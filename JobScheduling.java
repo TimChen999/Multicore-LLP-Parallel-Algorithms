@@ -32,7 +32,8 @@ public class JobScheduling extends LLP {
                 if(require){
                     int iFinish = startingTime[i] + time[i];
                     if(iFinish > startingTime[j]){
-                        System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + " Scheduling conflict: Job " + j + "(start: " + startingTime[j] + " end: " + (startingTime[j] + time[j]) + ")" + " conflicts with job " + i + "(start: " + startingTime[i] + " end: " + (startingTime[i] + time[j]) + ")");
+                        //Print debug
+                        //System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + " Scheduling conflict: Job " + j + "(start: " + startingTime[j] + " end: " + (startingTime[j] + time[j]) + ")" + " conflicts with job " + i + "(start: " + startingTime[i] + " end: " + (startingTime[i] + time[j]) + ")");
                         return true;
                     }
                 }

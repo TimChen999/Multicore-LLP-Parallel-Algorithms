@@ -89,7 +89,7 @@ public class ParallelPrefix extends LLP {
         // i.e. return the last n elements
 
         //Print debug
-        System.out.print("Reduction array: {"); for(int i = 1; i < G.length; i++){System.out.print(G[i] + " ");} System.out.println("}");
+        //System.out.print("Reduction array: {"); for(int i = 1; i < G.length; i++){System.out.print(G[i] + " ");} System.out.println("}");
 
         //Return last half of G (for indexes 0-15 (Length = 16), return indexes 8-15)
         return Arrays.copyOfRange(G, G.length/2, G.length); //Start is inclusive, end is exclusive

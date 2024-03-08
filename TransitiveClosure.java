@@ -52,14 +52,20 @@ public class TransitiveClosure extends LLP {
         for(int i = 0; i < solution[j].length; i++){
             //If node is false, try to find indirect path (indicates a new reachable node path is discovered)
             if(solution[j][i] == false && j != i){
-                System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + "Node: " + j + " Tries to find path to: " + i);
+                //Print debug
+                //System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + "Node: " + j + " Tries to find path to: " + i);
+
                 //Look for intermediate node k, reachable from j
                 //If j can reach k, test if k can reach i, if true, j can reach i
                 for(int k = 0; k < solution[j].length; k++){
                     if(solution[j][k] == true && j != k){ //k is intermediate node, can k reach i?
-                        System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + "Node: " + j + " Tries to find path to: " + i + " Thru Node " + k);
+                        //Print debug
+                        //System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + "Node: " + j + " Tries to find path to: " + i + " Thru Node " + k);
+
                         if(solution[k][i] == true){
-                            System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + "Node: " + j + " FOUND PATH: " + i + " Thru Node " + k);
+                            //Print debug
+                            //System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + "Node: " + j + " FOUND PATH: " + i + " Thru Node " + k);
+
                             //Usually advance would be used to set new values, but since this path already found in the forbidden step, might as well set it here to save on runtime
                             solution[j][i] = true;
                             return true;
