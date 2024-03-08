@@ -7,6 +7,9 @@ public class ParallelReduce extends LLP {
         super(A.length - 1);
         this.A = A;
         G = new int[A.length - 1];
+        for(int i = 0; i < G.length; i++){
+            G[i] = Integer.MIN_VALUE;
+        }
     }
 
     @Override

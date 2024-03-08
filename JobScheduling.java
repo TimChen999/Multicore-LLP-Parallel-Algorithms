@@ -3,7 +3,7 @@
 public class JobScheduling extends LLP {
     int[] time; //Time of each job
     int[][] prerequisites; //Prerequisites of each job
-    int[] solution; //Starting time of each job
+    int[] startingTime; //Starting time of each job
 
     // time[i] is the amount of time job i takes to complete
     // prerequisites[i] is a list of jobs that job i depends on
@@ -11,7 +11,7 @@ public class JobScheduling extends LLP {
         super(time.length);
         this.time = time;
         this.prerequisites = prerequisites;
-        this.solution = new int[time.length];
+        this.startingTime = new int[time.length];
     }
 
     //Forbidden if pre-requisite jobs are not completed by start time of current job
@@ -30,9 +30,9 @@ public class JobScheduling extends LLP {
 
                 //if "i" is a prerequisite, does "j" start after "i" finish?
                 if(require){
-                    int iFinish = solution[i] + time[i];
-                    if(iFinish > solution[j]){
-                        System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + " Scheduling conflict: Job " + j + "(start: " + solution[j] + " end: " + (solution[j] + time[j]) + ")" + " conflicts with job " + i + "(start: " + solution[i] + " end: " + (solution[i] + time[j]) + ")");
+                    int iFinish = startingTime[i] + time[i];
+                    if(iFinish > startingTime[j]){
+                        System.out.println("Running task " + j + " in thread " + Thread.currentThread().getName() + " Scheduling conflict: Job " + j + "(start: " + startingTime[j] + " end: " + (startingTime[j] + time[j]) + ")" + " conflicts with job " + i + "(start: " + startingTime[i] + " end: " + (startingTime[i] + time[j]) + ")");
                         return true;
                     }
                 }
@@ -43,18 +43,19 @@ public class JobScheduling extends LLP {
 
     @Override
     public void advance(int j) {
-        solution[j] = solution[j] + 1;
+        startingTime[j] = startingTime[j] + 1;
     }
 
     // This method will be called after solve()
     public int[] getSolution() {
         // Return the completion time for each job, convert from starting to finish time
-        System.out.print("{");
-        for(int i = 0; i < solution.length; i++){
-            solution[i] = solution[i] + time[i];
-            System.out.print(solution[i] + " ");
+        //System.out.print("{");
+        int[] finalTime = startingTime;
+        for(int i = 0; i < startingTime.length; i++){
+            finalTime[i] = startingTime[i] + time[i];
+            //System.out.print(finalTime[i] + " ");
         }
-        System.out.println("}");
-        return solution;
+        //System.out.println("}");
+        return finalTime;
     }
 }

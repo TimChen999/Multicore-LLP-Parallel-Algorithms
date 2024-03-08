@@ -61,7 +61,7 @@ public abstract class LLP {
                     @Override
                     public Boolean call() throws Exception {
                         //Debug
-                        System.out.println("Running task " + ID + " in thread " + Thread.currentThread().getName());
+                        //System.out.println("Running task " + ID + " in thread " + Thread.currentThread().getName());
 
                         //Boolean for if forbidden is called
                         Boolean forbid = false;
@@ -92,7 +92,7 @@ public abstract class LLP {
                 try{
                     //Gets each future object's boolean from list, will also block until object is submitted
                     threadResult = results.get(i).get();
-                    System.out.println("Thread " + i + " result: " + threadResult);
+                    //System.out.println("Thread " + i + " result: " + threadResult);
                 } catch (Exception e) {
                     System.out.println("Thread exception");
                     throw new RuntimeException(e);
@@ -105,7 +105,7 @@ public abstract class LLP {
 
             //End loop if stable (no forbidden)
             if(stable){
-                System.out.println("End loop");
+                //System.out.println("End loop");
                 break;
             }
         }

@@ -5,7 +5,7 @@ public class StableMarriage extends LLP {
     // wprefs[i][k] is woman i's kth choice
     int[][] mprefs;
     int[][] wprefs;
-    int[] G; //Current matching (index = man, value at index = man's woman ranking from man's pref list)
+    int[] G; //Current matching on pref (index = man, value at index = man's woman ranking from man's pref list)
     int[] matching; //What wife each man is matched to (convert from rankings in G)
     public StableMarriage(int[][] mprefs, int[][] wprefs) {
         super(mprefs.length);
