@@ -57,3 +57,6 @@ public class ParallelReduce extends LLP {
         return G;
     }
 }
+//Parallel LLP reduce has max of O(log(n)) levels
+//Each forbidden/advance takes O(1) time
+//Total runtime is O(log(n))

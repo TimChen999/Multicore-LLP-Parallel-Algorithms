@@ -44,7 +44,28 @@ public class JobScheduling extends LLP {
 
     @Override
     public void advance(int j) {
-        startingTime[j] = startingTime[j] + 1;
+        //startingTime[j] = startingTime[j] + 1;
+
+        //Start the job after its pre-req finishes
+        for(int i = 0; i < time.length; i++){
+            if(i != j){
+                //is "i" prerequisite of "j"?
+                boolean require = false;
+                for(int p = 0; p < prerequisites[j].length; p++){
+                    if(prerequisites[j][p] == i){
+                        require = true;
+                    }
+                }
+
+                //if "i" is a prerequisite, does "j" start after "i" finish, this step should advance j
+                if(require){
+                    int iFinish = startingTime[i] + time[i];
+                    if(iFinish > startingTime[j]){
+                        startingTime[j] = iFinish;
+                    }
+                }
+            }
+        }
     }
 
     // This method will be called after solve()
@@ -60,3 +81,11 @@ public class JobScheduling extends LLP {
         return finalTime;
     }
 }
+
+//For each job, it should have at most "n-1" pre-reqs (if all other jobs are required for it)
+//Each forbidden/advance can take up to O(n) runtime, a job loops through all other jobs in pre-req and advance
+//For each level, forbidden can happen multiple times, if a pre-req job also advances, forbidden might be called again
+//since "n" threads are running, a thread, at worst, calls forbidden "n" times on each level
+//Therefore, each level can have up to O(n^2) runtime
+//If a job has a linear chain of dependent jobs, it can be required to run up to "n" levels
+//Therefore overall complexity is O(n^3)

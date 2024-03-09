@@ -46,4 +46,7 @@ public class ListRank extends LLP {
         // Return the distance of every node to the root
         return distance;
     }
+
+    //For a node, it will traverse upwards (advance) at most "n" times. Forbidden/advance are both O(1), so
+    //every upwards traversal takes O(1) time. Overall runtime is O(n)
 }

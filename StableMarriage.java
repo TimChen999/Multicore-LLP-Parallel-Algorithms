@@ -70,3 +70,14 @@ public class StableMarriage extends LLP {
         return matching;
     }
 }
+
+//For every man, advance will be called at most "n" times (there are only "n" partners to go through)
+//Each time, forbidden is called, a man has to check through all other men O(n) time
+//If for a thread, forbidden is not called on one level, the next level might result in a forbidden call if someone else has to advance
+//At one level, the minimum of advance calls required to have a new level is 1 (all threads except one return forbidden = false)
+//If an advance is called, all other threads have to recheck forbidden, matches might have been destabilized by the advance
+//In the worst case, there are n^2 advances, which all happen serially (each advance is on a new level). In this case,
+//there are n^2 levels, each requiring a forbidden check of time n
+//Worst case runtime is O(n^3)
+//According to the textbook, runtime is critical path length
+

@@ -95,3 +95,5 @@ public class ParallelPrefix extends LLP {
         return Arrays.copyOfRange(G, G.length/2, G.length); //Start is inclusive, end is exclusive
     }
 }
+//Parallel Prefix also has log(n) levels, just like parallel reduce
+//Parallel Prefix takes O(1) time to run forbidden/advance, so total runtime is O(log(n))
